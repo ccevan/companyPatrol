@@ -10,6 +10,8 @@ moment = Moment()
 db = SQLAlchemy()
 csrf = CSRFProtect()
 bootstrap = Bootstrap()
+
+
 def create_app(config_name):
 
     # 参加Flask应用程序实例

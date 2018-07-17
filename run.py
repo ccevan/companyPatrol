@@ -3,7 +3,8 @@
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import  Manager
 from app import create_app
-from app.models.camera import *
+from app.models import camera
+from app.models import UserModel
 
 app, db = create_app("baseconfig")
 manager = Manager(app)

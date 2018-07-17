@@ -4,7 +4,10 @@ from flask import session,request,make_response,g,current_app,render_template,ur
 from wtforms import StringField,SubmitField,IntegerField,PasswordField
 from wtforms.validators import required,EqualTo,Length
 from datetime import datetime
-
+from app.models.UserModel import User,Role
+from app.models.camera import Camera,Area
+from app import db
+import json
 
 class userForm(FlaskForm):
     name = StringField("user name",validators=[required(),Length(6,12,message="the user name must be limited in 6-12 character")])
@@ -26,3 +29,16 @@ def login():
         return redirect(url_for("user.login"))
 
     return render_template("user/index.html",name=session["name"],form=form,current_time=datetime.utcnow())
+
+@user.route("/findall")
+def findall():
+    users = User.query.all()
+    print(users)
+    # users = [user.username for user in users]
+    users = [{"user_id":user.id,"user_name":user.username} for user in users]
+    print(type(json.dumps(users)))
+    data = {
+        "return_id":101,
+        "users":users
+    }
+    return json.dumps(data)
