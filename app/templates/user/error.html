@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+<html lang="en">
+{#<script>{{ moment.include_moment() }}</script>#}
+<head>
+    <meta charset="UTF-8">
+    <title>404</title>
+</head>
+<body>
+this is the error page! please hold on!
+ <a href="{{ url_for("user.helloindex",name="ingin",_external=True) }}">click here</a>
+<p>current time is {{ moment(current).format("LLL") }}.</p>
+<P>That was {{ moment(current).fromNow(refresh=True) }}</P>
+</body>
+</html>

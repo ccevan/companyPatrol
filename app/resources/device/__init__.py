@@ -7,4 +7,4 @@ from flask import render_template
 #: 模板路径是 root_path + template_folder
 #: root_path 是 blueprintdemo的路径
 
-device = Blueprint('device', __name__)
+device = Blueprint('device', __name__,url_prefix="/api/device")

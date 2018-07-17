@@ -7,5 +7,6 @@ from flask import render_template
 #: 模板路径是 root_path + template_folder
 #: root_path 是 blueprintdemo的路径
 
-user = Blueprint('user', __name__)
+user = Blueprint('user', __name__,url_prefix="/api/user",template_folder="templates")
 from . import views
+from . import viewtwo

@@ -20,8 +20,8 @@ class Camera(BaseModel,db.Model):
 
 class Area(BaseModel,db.Model):
     __tablename__ = "area"
-    AreaId = db.column(db.Integer,primery_key=True)
-    AreaName = db.column(db.String(32))
+    AreaId = db.Column(db.Integer,primary_key=True)
+    AreaName = db.Column(db.String(32))
     AreaDesc = db.Column(db.String(128))
     ParentId = db.Column(db.Integer)
     IsDelete = db.Column(db.Boolean)
