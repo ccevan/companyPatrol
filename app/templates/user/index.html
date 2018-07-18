@@ -27,7 +27,14 @@
     <h1>hello,{% if name %}{{ name }}
             {% else %}please login
         {% endif %}
-        </h1>
+    </h1>
+    <h1>
+    {% if known %}
+    <p>welcome back</p>
+        {% else %}
+        <p>pleased to meet you</p>
+    {% endif %}
+    </h1>
     {{ wtf.quick_form(form) }}
 
 {% endblock %}

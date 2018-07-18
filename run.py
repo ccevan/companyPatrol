@@ -6,7 +6,7 @@ from app import create_app
 from app.models import camera
 from app.models import UserModel
 
-app, db = create_app("baseconfig")
+app, db = create_app("mailconfig")
 manager = Manager(app)
 migrate = Migrate(app, db)
 
