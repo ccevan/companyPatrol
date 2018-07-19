@@ -7,6 +7,8 @@ class baseconfig(object):
         os.environ.get("MYSQL_PASSWD",'mysql'),os.environ.get("MYSQL_HOST","127.0.0.1"))
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = True
+    CELERY_BROKER_URL="redis://:ch134197@39.107.107.0:6379/0"
+    CELERY_RESULT_BACKEND="redis://:ch134197@39.107.107.0:6379/1"
 
 class mailconfig(baseconfig):
     NAME = "CHANGHAO"

@@ -8,8 +8,8 @@ from app.models.UserModel import User, Role
 from app.models.camera import Camera, Area
 from app import db
 import json
-from tools import mail_tools
 import os
+
 from getRootPath import  RootPath
 
 IMAGE_PATH = "/app/static/img/Avatar/"
@@ -34,6 +34,7 @@ def login():
         user = User.query.filter_by(username=form.name.data).first()
 
         filePath = RootPath()+IMAGE_PATH + form.img.data.filename
+        # filePath: 保存文件路径
         with open(filePath,mode='wb') as f_write:
             f_write.write(form.img.data.read())
 
@@ -43,9 +44,12 @@ def login():
             db.session.commit()
             session["known"] = False
             session["name"] = form.name.data
-            mail_tools.send_mail(to=form.email.data,subject="flask",html_tem='mail_tem/html/welcome',txt_tem='mail_tem/txt/welcome',accessory_path=filePath,user=form.name.data)
+
+            from tools.mail_tools import send_mail
+
+            send_mail.delay(to=form.email.data,subject="flask",html_tem='mail_tem/html/welcome',txt_tem='mail_tem/txt/welcome',accessory_path=filePath,user=form.name.data)
             flash("successfully to sign up")
-            # mail_tools.send_mail(to="2402779957@qq.com", subject="flask", html_tem='mail_tem/html/welcome',
+            # mail_tools.send_mail.delay(to="2402779957@qq.com", subject="flask", html_tem='mail_tem/html/welcome',
             #                      txt_tem="mail_tem/txt/welcome", user=form.name.data)
         else:
             session["known"] = True
