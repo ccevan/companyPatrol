@@ -7,6 +7,8 @@ class baseconfig(object):
         os.environ.get("MYSQL_PASSWD",'mysql'),os.environ.get("MYSQL_HOST","127.0.0.1"))
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = True
+    CELERY_BROKER_URL="redis://:ch134197@39.107.107.0:6379/0"
+    CELERY_RESULT_BACKEND="redis://:ch134197@39.107.107.0:6379/1"
 
 class mailconfig(baseconfig):
     NAME = "CHANGHAO"
@@ -15,8 +17,8 @@ class mailconfig(baseconfig):
     MAIL_USE_SSL = True
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
-    # MAIL_PASSWORD = os.environ.get('mail_password') 考虑安全性
-    MAIL_DEFAULT_SENDER = 'flask<15890396381@163.com>'
+    MAIL_DEFAULT_SENDER = 'ingin<15890396381@163.com>'
+    FLASKY_MAIL_SUBJECT_PREFIX = "[welcome to coder] "
 
 config = {
     "baseconfig": baseconfig,
