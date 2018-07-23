@@ -6,17 +6,8 @@ from run import app
 from flask import current_app,render_template
 
 
-
-# celery = Celery('mail_tools', backend=current_app.config["CELERY_RESULT_BACKEND"], broker=current_app.config["CELERY_BROKER_URL"])
-
-# @celery.task
-# def send_async_mail(msg):
-#     with app.app_context():
-#         mail.send(msg)
-
-
 @celery.task
-def send_mail(to,subject,html_tem=None,accessory_path=None,**kwargs):
+def send_async_mail(to, subject, html_tem=None, accessory_path=None, **kwargs):
     with app.app_context():
         msg = Message(
             subject=subject,

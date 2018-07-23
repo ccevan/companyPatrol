@@ -45,9 +45,9 @@ def login():
             session["known"] = False
             session["name"] = form.name.data
 
-            from tools.mail_tools import send_mail
+            from tools.mail_tools import send_async_mail
 
-            send_mail.delay(to=form.email.data,subject="flask",html_tem='mail_tem/html/welcome',txt_tem='mail_tem/txt/welcome',accessory_path=filePath,user=form.name.data)
+            send_async_mail.delay(to=form.email.data, subject="flask", html_tem='mail_tem/html/welcome', txt_tem='mail_tem/txt/welcome', accessory_path=filePath, user=form.name.data)
             flash("successfully to sign up")
             # mail_tools.send_mail.delay(to="2402779957@qq.com", subject="flask", html_tem='mail_tem/html/welcome',
             #                      txt_tem="mail_tem/txt/welcome", user=form.name.data)
@@ -87,3 +87,18 @@ def findall():
 # @user.route("/login/",methods=['POST','GET'])
 # def login():
 #
+
+@user.route("/ttsafe")
+def testsafe():
+    name = "<h1>changhao</h1>"
+    return render_template("user/ttsafe.html",name=name,ll=[1,2,3,4,5])
+
+# from jinja2 import environmentfilter
+#
+# @environmentfilter
+# def do_return_one(li):
+#     li = list(li)
+#     return li[0]
+@user.app_template_filter('one')
+def do_one(li):
+    return li[-1]

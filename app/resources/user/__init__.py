@@ -10,3 +10,4 @@ from flask import render_template
 user = Blueprint('user', __name__,url_prefix="/api/user",template_folder="templates")
 from . import views
 from . import viewtwo
+from . import userfilter

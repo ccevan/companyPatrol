@@ -17,7 +17,7 @@ class mailconfig(baseconfig):
     MAIL_USE_SSL = True
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
-    MAIL_DEFAULT_SENDER = 'ingin<15890396381@163.com>'
+    MAIL_DEFAULT_SENDER = os.environ.get("MAIL_DEFAULT_SENDER")
     FLASKY_MAIL_SUBJECT_PREFIX = "[welcome to coder] "
 
 config = {
