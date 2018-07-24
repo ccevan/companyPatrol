@@ -36,6 +36,9 @@ print("t2的线程名字{}".format(t2.getName()))
 
 # while len(threading.enumerate()) != 1:
 #     time.sleep(1)
+
 t1.join()
+
+
 t2.join()
 print("2个线程对同一个全局变量操作之后的最终结果是:%s" % g_num)
