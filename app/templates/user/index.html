@@ -1,0 +1,40 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block scripts %}
+    {{ super() }}
+    {{ moment.include_moment() }}
+    {{ moment.lang('zh-CN') }}
+{% endblock %}
+{% block title %}flasky{% endblock %}
+{% block content %}
+{#<p>现在时间时: {{ moment().format('YYYY年M月D日, h:mm:ss a') }}.</p>#}
+{#<p>已经过去了: {{ moment().fromTime(time) }}.</p>#}
+{#<p>{{ moment().calendar() }}.</p>#}
+    <p>The local date and time is {{ moment(current_time).format('LLL') }}.</p>
+<p>That was {{ moment(current_time).fromNow(refresh=True) }}</p>
+    <p>{{ current_time }}</p>
+    <hr>
+    <div class="container">
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+</div>
+    {% endfor %}
+    </div>
+
+    
+    <h1>hello,{% if name %}{{ name }}
+            {% else %}please login
+        {% endif %}
+    </h1>
+    <h1>
+    {% if known %}
+    <p>welcome back</p>
+        {% else %}
+        <p>pleased to meet you</p>
+    {% endif %}
+    </h1>
+    {{ wtf.quick_form(form) }}
+
+{% endblock %}
